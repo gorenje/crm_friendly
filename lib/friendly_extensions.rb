@@ -12,6 +12,12 @@ module Friendly
         all.each { |document| document.destroy }
       end
 
+      def clone
+        hsh = to_hash
+        [:id, :created_at, :updated_at].each { |a| hsh.delete(a) }
+        self.class.new(hsh)
+      end
+  
       # default_value class becomes the type for the attribute. If default value is nil, then
       # String is used.
       def new_attribute(name, default_value, opts = {})
