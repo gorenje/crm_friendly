@@ -1,0 +1,40 @@
+Crm Friendly
+============
+
+Basically this is some stuff that makes working with Friendly easier in Fat Free CRM.
+
+At the moment this ain't much, but every little bit helps!
+
+Example
+=======
+
+Creating a product tab, based on a model with Friendlty, for Fat Free would be a case 
+of including this plugin + gem and then in the model for the product:
+
+--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<
+class Product
+  include Friendly::Document
+  include Friendly::Extensions ## include after including document
+
+  ...
+end
+--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<
+
+And in the init.rb of the products plugin:
+
+--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<
+require "fat_free_crm"
+
+FatFreeCRM::Plugin.register(:product_tab, initializer) do
+          name "Product Tab"
+        author "Max Mustermann"
+       version "0.1"
+   description "Product tab for our great products"
+  dependencies :haml, :crm_friendly
+           tab :main, :text => :tab_products, :url => { :controller => "products" }
+end
+--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<--8<
+
+That's it ... besides having to hack all the views and controller!
+
+Copyright (c) 2010 Gerrit Riessen, released under the MIT license
