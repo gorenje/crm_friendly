@@ -66,7 +66,13 @@ module Friendly
       end
     end
     
-    protected 
+    def clone
+      hsh = to_hash
+      [:id, :created_at, :updated_at].each { |a| hsh.delete(a) }
+      self.class.new(hsh)
+    end
+
+    protected
     
     def capture_exceptions
       errors.clear

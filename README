@@ -37,4 +37,11 @@ end
 
 That's it ... besides having to hack all the views and controller!
 
+Bugs
+====
+
+No test.
+
+Although I've been testing this module indirectly by having tests for my Product model.
+
 Copyright (c) 2010 Gerrit Riessen, released under the MIT license
